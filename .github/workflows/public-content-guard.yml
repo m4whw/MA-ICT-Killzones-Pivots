@@ -1,0 +1,28 @@
+name: Public content guard
+
+# Fails if source code, debug symbols, binaries or secret files are pushed to this public
+# product repository. Binaries belong in GitHub Releases, source code never belongs here.
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Reject source, binaries, symbols and secret files
+        run: |
+          set -e
+          blocked=$(git ls-files | grep -E -i '\.(cs|csx|pine|pinescript|vb|fs|cpp|h|py|ps1|sln|csproj|vbproj|fsproj|props|targets|mq4|mq5|dll|exe|zip|nupkg|pdb|mdb|snk|pfx|p12|key|pem)$|(^|/)\.env|mapping.*\.txt$' || true)
+          if [ -n "$blocked" ]; then
+            echo "::error::Files that must not be published were found:"
+            echo "$blocked"
+            exit 1
+          fi
+          echo "No source code, binaries, symbols or secret files tracked."

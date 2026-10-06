@@ -1,0 +1,54 @@
+# This is a public product / release repository. Indicator source code and development
+# artifacts must never be committed. Binaries are distributed through GitHub Releases.
+
+# Source code (any language / platform)
+*.cs
+*.csx
+*.pine
+*.pinescript
+*.vb
+*.fs
+*.cpp
+*.h
+*.py
+*.ps1
+*.sln
+*.csproj
+*.vbproj
+*.fsproj
+*.props
+*.targets
+*.ninjatrader
+*.mq4
+*.mq5
+
+# Binaries and packages (attach to GitHub Releases instead)
+*.dll
+*.exe
+*.zip
+*.nupkg
+
+# Debug symbols, build output, IDE and test artifacts
+*.pdb
+*.mdb
+*.ilk
+bin/
+obj/
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+TestResults/
+*.log
+
+# Obfuscation maps, keys and secrets
+*Mapping*.txt
+*.snk
+*.pfx
+*.p12
+*.key
+*.pem
+.env
+.env.*
+secrets.*
