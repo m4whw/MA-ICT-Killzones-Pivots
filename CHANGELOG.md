@@ -17,5 +17,5 @@ Initial release for NinjaTrader 8 and ATAS.
 - ATAS: configurable ticks per row for the Session Volume Profile.
 
 ### Release status
-- NinjaTrader 8 package: in preparation.
-- ATAS package: built and tested; final in-platform verification in progress.
+- NinjaTrader 8 package: released — [v1.0.0-ninjatrader](https://github.com/m4whw/MA-ICT-Killzones-Pivots/releases/tag/v1.0.0-ninjatrader).
+- ATAS package: released — [v1.0.0](https://github.com/m4whw/MA-ICT-Killzones-Pivots/releases/tag/v1.0.0).
