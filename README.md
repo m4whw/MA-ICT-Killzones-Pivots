@@ -131,7 +131,7 @@ Binaries are distributed through **[GitHub Releases](https://github.com/m4whw/MA
 | Package | Platform | Status |
 |---|---|---|
 | `MA-ICT-Killzones-Pivots-NinjaTrader-v1.0.0.zip` | NinjaTrader 8 | In preparation |
-| `MA-ICT-Killzones-Pivots-ATAS-v1.0.0.zip` | ATAS | In final platform verification |
+| [`MA-ICT-Killzones-Pivots-ATAS-v1.0.0.zip`](https://github.com/m4whw/MA-ICT-Killzones-Pivots/releases/download/v1.0.0/MA-ICT-Killzones-Pivots-ATAS-v1.0.0.zip) | ATAS | Released — v1.0.0 ([release page](https://github.com/m4whw/MA-ICT-Killzones-Pivots/releases/tag/v1.0.0)) |
 
 A package is published only after it has been built and verified on its platform. Packages contain compiled binaries only.
 
