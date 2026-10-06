@@ -10,7 +10,7 @@
 [![ATAS](https://img.shields.io/badge/ATAS-8.0.15-purple)](#compatibility)
 [![License](https://img.shields.io/badge/license-proprietary-lightgrey)](LICENSE.md)
 
-[Website](https://mohamed-abdelaziz.com) · [Downloads](#downloads) · [Installation](#installation) · [Changelog](CHANGELOG.md) · [License](LICENSE.md)
+[Website](https://mohamed-abdelaziz.com) · [Product page](https://mohamed-abdelaziz.com/en/learning/tools/ma-ict-killzones-pivots) · [صفحة المنتج](https://mohamed-abdelaziz.com/ar/learning/tools/ma-ict-killzones-pivots) · [Downloads](#downloads) · [Installation](#installation) · [Changelog](CHANGELOG.md) · [License](LICENSE.md)
 
 </div>
 
@@ -135,6 +135,8 @@ Binaries are distributed through **[GitHub Releases](https://github.com/m4whw/MA
 
 A package is published only after it has been built and verified on its platform. Packages contain compiled binaries only.
 
+Full product guide — features, how to read the levels, installation and video resources: **[English](https://mohamed-abdelaziz.com/en/learning/tools/ma-ict-killzones-pivots)** · **[العربية](https://mohamed-abdelaziz.com/ar/learning/tools/ma-ict-killzones-pivots)**
+
 ## Installation
 
 - **NinjaTrader 8:** see [docs/installation-ninjatrader.md](docs/installation-ninjatrader.md)
@@ -143,6 +145,9 @@ A package is published only after it has been built and verified on its platform
 ## Support
 
 Product information and support: **[mohamed-abdelaziz.com](https://mohamed-abdelaziz.com)**
+
+- Product page (English): https://mohamed-abdelaziz.com/en/learning/tools/ma-ict-killzones-pivots
+- صفحة المنتج (العربية): https://mohamed-abdelaziz.com/ar/learning/tools/ma-ict-killzones-pivots
 
 ## License
 
