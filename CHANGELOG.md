@@ -2,6 +2,20 @@
 
 All notable changes to MA ICT Killzones & Pivots are documented here.
 
+## [1.0.0-mt5] — 2026-10-22
+
+First MetaTrader 5 release (free).
+
+### Added
+- MetaTrader 5 version with the full feature set: killzones, session pivots and alerts, range levels, previous day / week / month levels, opening prices, timestamps, statistics table and the Session Volume Profile (per killzone plus Overnight and US Full).
+- Broker server time detection from the weekly forex close, with conversion to New York time using US daylight-saving rules (verified 2000–2036 against Windows time zone data); manual override.
+- Session Volume Profile sources for MetaTrader 5: real volume on exchange symbols, otherwise tick activity at price, with M1 tick volume as a fallback. The source is shown on the chart.
+- Popup alerts and optional push notifications.
+- Session pivots are off by default on MetaTrader 5 (enable them under 02. Pivots).
+
+### Release status
+- MetaTrader 5 package: released — [v1.0.0-mt5](https://github.com/m4whw/MA-ICT-Killzones-Pivots/releases/tag/v1.0.0-mt5).
+
 ## [1.0.0] — 2026-10-06
 
 Initial release for NinjaTrader 8 and ATAS.

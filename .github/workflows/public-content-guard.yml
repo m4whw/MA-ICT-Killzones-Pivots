@@ -19,7 +19,7 @@ jobs:
       - name: Reject source, binaries, symbols and secret files
         run: |
           set -e
-          blocked=$(git ls-files | grep -E -i '\.(cs|csx|pine|pinescript|vb|fs|cpp|h|py|ps1|sln|csproj|vbproj|fsproj|props|targets|mq4|mq5|dll|exe|zip|nupkg|pdb|mdb|snk|pfx|p12|key|pem)$|(^|/)\.env|mapping.*\.txt$' || true)
+          blocked=$(git ls-files | grep -E -i '\.(cs|csx|pine|pinescript|vb|fs|cpp|h|py|ps1|sln|csproj|vbproj|fsproj|props|targets|mq4|mq5|mqh|ex4|ex5|dll|exe|zip|nupkg|pdb|mdb|snk|pfx|p12|key|pem)$|(^|/)\.env|mapping.*\.txt$' || true)
           if [ -n "$blocked" ]; then
             echo "::error::Files that must not be published were found:"
             echo "$blocked"

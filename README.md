@@ -2,10 +2,11 @@
 
 # MA ICT Killzones & Pivots
 
-**Session killzones, pivots, range projections, D/W/M levels and a real-volume Session Volume Profile for NinjaTrader 8 and ATAS.**
+**ICT killzones, session pivots, range projections, D/W/M levels and a Session Volume Profile (POC, VAH, VAL) for MetaTrader 5, NinjaTrader 8 and ATAS.**
 
 [![Website](https://img.shields.io/badge/website-mohamed--abdelaziz.com-0A66C2)](https://mohamed-abdelaziz.com)
 [![Version](https://img.shields.io/badge/version-1.0.0-2ea44f)](CHANGELOG.md)
+[![MetaTrader 5](https://img.shields.io/badge/MetaTrader-5-1E88E5)](#compatibility)
 [![NinjaTrader 8](https://img.shields.io/badge/NinjaTrader-8.1-orange)](#compatibility)
 [![ATAS](https://img.shields.io/badge/ATAS-8.0.15-purple)](#compatibility)
 [![License](https://img.shields.io/badge/license-proprietary-lightgrey)](LICENSE.md)
@@ -17,13 +18,16 @@
 ![MA ICT Killzones & Pivots on a NinjaTrader 8 NQ 15-minute chart](docs/images/ninjatrader-nq-15m.png)
 <sub>NinjaTrader 8, NQ 15-minute: killzone boxes with Session Volume Profiles, POC / VAH / VAL, pivots, previous day/week levels and the statistics table.</sub>
 
+![MA ICT Killzones & Pivots on a MetaTrader 5 XAUUSD 15-minute chart](docs/images/mt5-xauusd-15m.png)
+<sub>MetaTrader 5, XAUUSD 15-minute: Asia, London and New York killzones, session volume profiles built from tick activity, POC / VAH / VAL and the statistics table.</sub>
+
 ---
 
 ## Overview
 
 MA ICT Killzones & Pivots maps the trading day into configurable time-of-day sessions ("killzones") and plots the levels that each session leaves behind: its high, low and midpoint, projected range levels, previous day / week / month levels, opening prices and time markers. Each level carries hit-rate statistics so you can see how often it has been reached historically.
 
-An optional **Session Volume Profile** builds an independent volume profile for every session from **real traded volume at each price** and plots its **POC, VAH and VAL**. Two additional profile sessions, **Overnight** and **US Full**, are calculated on New York time.
+An optional **Session Volume Profile** builds an independent volume profile for every session and plots its **POC, VAH and VAL**: from **real traded volume at each price** on NinjaTrader 8 and ATAS, and from **tick activity at each price** (a clearly labelled approximation) on MetaTrader 5, where brokers usually provide tick volume only. Two additional profile sessions, **Overnight** and **US Full**, are calculated on New York time.
 
 The indicator is a charting and analysis tool. It does not place orders.
 
@@ -68,18 +72,22 @@ The indicator is a charting and analysis tool. It does not place orders.
 - Optional **histogram** of the volume distribution by price, shaded inside / outside the value area.
 - Optional **extension** of the levels after the session ends. History follows the session limit.
 
-## Real-volume methodology
+## Volume methodology
 
-The Session Volume Profile only uses volume that the platform actually reports at each price. It never spreads a bar's volume across its high/low range and never reconstructs bid/ask volume.
+On **NinjaTrader 8 and ATAS** the Session Volume Profile only uses volume that the platform actually reports at each price. It never spreads a bar's volume across its high/low range and never reconstructs bid/ask volume.
 
-| | NinjaTrader 8 | ATAS |
-|---|---|---|
-| Volume source | 1-tick trade series (default), Volumetric bars (Order Flow+), or single-price bar volume | ATAS cluster (volume-at-price) data |
-| Row size | 1 tick | Configurable ticks per row (default 1) |
+On **MetaTrader 5** most forex and CFD brokers provide tick volume, not exchange volume. The profile then counts price changes (ticks) at each price, which approximates where activity happened, not traded contracts. If the tick history does not cover a session, M1 bar tick volume spread over each bar's range is used. Exchange symbols with real volume are used automatically. The source in use is shown at the bottom of the chart.
+
+| | MetaTrader 5 | NinjaTrader 8 | ATAS |
+|---|---|---|---|
+| Volume source | Real volume (exchange symbols) → tick activity at price → M1 tick volume | 1-tick trade series (default), Volumetric bars (Order Flow+), or single-price bar volume | ATAS cluster (volume-at-price) data |
+| Real traded volume | Only on exchange symbols | Yes | Yes |
+| Row size | Auto (about 200 rows per average day) or points | 1 tick | Configurable ticks per row (default 1) |
 
 When a session does not have the required data, the indicator shows **Insufficient Data** or **Approximation Not Available** on the chart instead of drawing levels.
 
 **Data requirements**
+- **MetaTrader 5:** tick history from the broker for the loaded days (M1 history is used as a fallback).
 - **NinjaTrader 8:** historical tick data for the loaded days (Tick Replay is *not* required). The Volumetric source requires Volumetric bars (NinjaTrader Order Flow+).
 - **ATAS:** cluster (volume-at-price) history for the loaded days.
 
@@ -87,40 +95,42 @@ When a session does not have the required data, the indicator shows **Insufficie
 
 | Platform | Tested version | Runtime |
 |---|---|---|
+| MetaTrader 5 | MetaTrader 5 (64-bit, Windows) on XAUUSD, EURUSD, GBPUSD, USDJPY | MetaTrader 5 terminal |
 | NinjaTrader 8 | 8.1.8.3 | NinjaTrader 8 desktop |
 | ATAS | 8.0.15.302 | .NET 10 (bundled with ATAS) |
 
 ## Platform comparison
 
-| Feature | NinjaTrader 8 | ATAS |
-|---|:---:|:---:|
-| Killzones (6 configurable sessions) | Supported | Supported |
-| Session boxes and session limit | Supported | Supported |
-| New York timezone with DST / fixed GMT offsets | Supported | Supported |
-| Pivot high / low / midpoint and labels | Supported | Supported |
-| Pivot hit-rate statistics | Supported | Supported |
-| Range levels (average / median / standard deviation) | Supported | Supported |
-| Previous day / week / month high, low, midline | Supported | Supported |
-| Day / week / month opens and dividers | Supported | Supported |
-| Opening-price lines | Supported | Supported |
-| Timestamps (vertical markers) | Supported | Supported |
-| Day-of-week labels | Supported | Supported |
-| Statistics table | Supported | Supported |
-| Drawing cutoff time / timeframe limit | Supported | Supported |
-| Alerts (pivot and D/W/M breaks) | Supported | Supported |
-| Session Volume Profile per killzone | Supported | Supported |
-| Overnight session profile (18:00–09:29 NY) | Supported | Supported |
-| US Full session profile (09:30–16:00 NY) | Supported | Supported |
-| POC / VAH / VAL | Supported | Supported |
-| Configurable Value Area % | Supported | Supported |
-| Volume histogram | Supported | Supported |
-| Level extension | Supported | Supported |
-| Configurable ticks per row | — (1 tick) | Supported |
-| Selectable volume data source | Supported | — (ATAS cluster data) |
-| Historical and real-time calculation | Supported | Supported |
+| Feature | MetaTrader 5 | NinjaTrader 8 | ATAS |
+|---|:---:|:---:|:---:|
+| Killzones (6 configurable sessions) | Supported | Supported | Supported |
+| Session boxes and session limit | Supported | Supported | Supported |
+| New York timezone with DST / fixed GMT offsets | Supported | Supported | Supported |
+| Pivot high / low / midpoint and labels | Supported | Supported | Supported |
+| Pivot hit-rate statistics | Supported | Supported | Supported |
+| Range levels (average / median / standard deviation) | Supported | Supported | Supported |
+| Previous day / week / month high, low, midline | Supported | Supported | Supported |
+| Day / week / month opens and dividers | Supported | Supported | Supported |
+| Opening-price lines | Supported | Supported | Supported |
+| Timestamps (vertical markers) | Supported | Supported | Supported |
+| Day-of-week labels | Supported | Supported | Supported |
+| Statistics table | Supported | Supported | Supported |
+| Drawing cutoff time / timeframe limit | Supported | Supported | Supported |
+| Alerts (pivot and D/W/M breaks) | Supported | Supported | Supported |
+| Session Volume Profile per killzone | Supported | Supported | Supported |
+| Overnight session profile (18:00–09:29 NY) | Supported | Supported | Supported |
+| US Full session profile (09:30–16:00 NY) | Supported | Supported | Supported |
+| POC / VAH / VAL | Supported | Supported | Supported |
+| Configurable Value Area % | Supported | Supported | Supported |
+| Volume histogram | Supported | Supported | Supported |
+| Level extension | Supported | Supported | Supported |
+| Configurable ticks per row | Supported (row size in points) | — (1 tick) | Supported |
+| Selectable volume data source | Supported (Auto / ticks / M1) | Supported | — (ATAS cluster data) |
+| Historical and real-time calculation | Supported | Supported | Supported |
 
 **Platform notes**
-- Day / week / month changes follow NinjaTrader's Trading Hours template on NinjaTrader 8 and the chart's session settings on ATAS.
+- Day / week / month changes follow NinjaTrader's Trading Hours template on NinjaTrader 8, the chart's session settings on ATAS, and the 17:00 New York forex day on MetaTrader 5.
+- MetaTrader 5: the broker server time is detected automatically from the weekly forex close and converted to New York time with US daylight-saving rules; a manual setting is available. Alerts can also be sent as push notifications.
 - Alerts are delivered through each platform's own alert system and only fire on real-time data.
 - Text entries (opening prices, timestamps, range multipliers) are separated with `;`.
 
@@ -130,6 +140,7 @@ Binaries are distributed through **[GitHub Releases](https://github.com/m4whw/MA
 
 | Package | Platform | Status |
 |---|---|---|
+| [`MA-ICT-Killzones-Pivots-MT5-v1.0.0.zip`](https://github.com/m4whw/MA-ICT-Killzones-Pivots/releases/download/v1.0.0-mt5/MA-ICT-Killzones-Pivots-MT5-v1.0.0.zip) | MetaTrader 5 | Released — v1.0.0, free ([release page](https://github.com/m4whw/MA-ICT-Killzones-Pivots/releases/tag/v1.0.0-mt5)) |
 | [`MA-ICT-Killzones-Pivots-NinjaTrader-v1.0.0.zip`](https://github.com/m4whw/MA-ICT-Killzones-Pivots/releases/download/v1.0.0-ninjatrader/MA-ICT-Killzones-Pivots-NinjaTrader-v1.0.0.zip) | NinjaTrader 8 | Released — v1.0.0 ([release page](https://github.com/m4whw/MA-ICT-Killzones-Pivots/releases/tag/v1.0.0-ninjatrader)) |
 | [`MA-ICT-Killzones-Pivots-ATAS-v1.0.0.zip`](https://github.com/m4whw/MA-ICT-Killzones-Pivots/releases/download/v1.0.0/MA-ICT-Killzones-Pivots-ATAS-v1.0.0.zip) | ATAS | Released — v1.0.0 ([release page](https://github.com/m4whw/MA-ICT-Killzones-Pivots/releases/tag/v1.0.0)) |
 
@@ -139,6 +150,7 @@ Full product guide — features, how to read the levels, installation and video 
 
 ## Installation
 
+- **MetaTrader 5:** see [docs/installation-mt5.md](docs/installation-mt5.md)
 - **NinjaTrader 8:** see [docs/installation-ninjatrader.md](docs/installation-ninjatrader.md)
 - **ATAS:** see [docs/installation-atas.md](docs/installation-atas.md)
 
@@ -155,6 +167,6 @@ Copyright © 2026 Mohamed Abdelaziz. All rights reserved.
 
 Proprietary software. Unauthorized copying, redistribution, modification, reverse engineering, decompilation, disassembly, extraction, resale, sublicensing, or commercial redistribution is prohibited, subject to applicable law. See [LICENSE.md](LICENSE.md).
 
-The product includes a component licensed under the Mozilla Public License 2.0; its notice and source-availability terms are listed separately in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
+The NinjaTrader 8 and ATAS packages include a component licensed under the Mozilla Public License 2.0; its notice and source-availability terms are listed separately in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md). The MetaTrader 5 package contains no third-party code.
 
-**Risk disclosure:** trading futures and other leveraged instruments involves substantial risk of loss. This software is an analysis tool and does not constitute investment advice.
+**Risk disclosure:** trading futures, forex, CFDs and other leveraged instruments involves substantial risk of loss. This software is an analysis tool and does not constitute investment advice.
