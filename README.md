@@ -18,8 +18,8 @@
 ![MA ICT Killzones & Pivots on a NinjaTrader 8 NQ 15-minute chart](docs/images/ninjatrader-nq-15m.png)
 <sub>NinjaTrader 8, NQ 15-minute: killzone boxes with Session Volume Profiles, POC / VAH / VAL, pivots, previous day/week levels and the statistics table.</sub>
 
-![MA ICT Killzones & Pivots on a MetaTrader 5 XAUUSD 15-minute chart](docs/images/mt5-xauusd-15m.png)
-<sub>MetaTrader 5, XAUUSD 15-minute: Asia, London and New York killzones, session volume profiles built from tick activity, POC / VAH / VAL and the statistics table.</sub>
+![MA ICT Killzones & Pivots on a MetaTrader 5 XAUUSD 15-minute chart](docs/images/mt5-xauusd-15m.jpg)
+<sub>MetaTrader 5, XAUUSD 15-minute: Asia, London and New York killzone boxes, session highs and lows, previous day levels, opening prices and the statistics table.</sub>
 
 ---
 
